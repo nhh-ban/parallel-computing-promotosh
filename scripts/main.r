@@ -1,4 +1,4 @@
- Assignment 1:  
+# Assignment 1:  
 library(tweedie) 
 library(ggplot2)
 
@@ -25,17 +25,6 @@ df <-
     M = 1000, 
     share_reject = NA) 
 
-library(foreach)
-library(doParallel)
-
-cl <- makeCluster(detectCores() - 1)  # create a cluster
-registerDoParallel(cl)
-
-df$share_reject <- foreach(i=1:nrow(df), .combine=c) %dopar% {
-  MTweedieTests(N=df$N[i], M=df$M[i], sig=.05)
-}
-
-stopCluster(cl)
 
 for(i in 1:nrow(df)){ 
   df$share_reject[i] <-  
@@ -49,7 +38,7 @@ for(i in 1:nrow(df)){
 
 
 ## Assignemnt 4 
-
+   
 # This is one way of solving it - maybe you have a better idea? 
 # First, write a function for simulating data, where the "type" 
 # argument controls the distribution. We also need to ensure 
